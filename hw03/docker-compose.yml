@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-pass}
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+  mysql_8:
+    container_name: mysql_8
+    image: docker.io/bitnami/mysql:8.1
+    ports:
+      - '3306:3306'
+#    volumes:
+#      - 'mysql_data:/bitnami/mysql/data'
+    environment:
+      - MYSQL_ROOT_PASSWORD=pass
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+  postgres:
