@@ -1,0 +1,29 @@
+### request 1
+POST http://localhost:8080/booking
+Content-Type: application/json
+
+{
+  "flight_id": 1,
+  "seat_id": 1
+}
+
+
+### request 2
+POST http://localhost:8080/booking
+Content-Type: application/json
+
+{
+  "flight_id": 1,
+  "seat_id": 2
+}
+
+
+### request 3
+POST http://localhost:8080/booking
+Content-Type: application/json
+
+{
+  "flight_id": 1,
+  "seat_id": 2
+}
+
