@@ -13,11 +13,11 @@ help() {
 
 replace() {
   local fileName=$1
-  local arg=$2
+  local key=$2
   local value=$3
-  echo "=> replace file: $fileName, key=$arg, value=$value"
+  echo "=> replace file: $fileName, key=$key, value=$value"
 
-  sed -i "s/${arg}/${value}/g" "${fileName}"
+  sed -i "s/${key}/${value}/g" "${fileName}"
 }
 
 open() {
@@ -46,11 +46,17 @@ open() {
 
 container() {
   if [[ "$1" == "list" ]]; then
-    docker ps -a
+    docker ps -a --format '{{.Names}}'
   elif [[ "$1" == "start" ]]; then
     docker start "$2"
   elif [[ "$1" == "stop" ]]; then
     docker stop "$2"
+  elif [[ "$1" == "status" ]]; then
+    docker container inspect -f '{{.State.Status}}' "$2"
+  elif [ "$1" == "search" ]; then
+    docker ps -a --format '{{.Names}}' | grep "$2"
+  else
+    echo "command '$1' not support!"
   fi
 }
 

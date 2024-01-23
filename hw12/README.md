@@ -21,6 +21,9 @@ $ ./hepler.sh open firefox # chrome, brave, postman, dbeaver...
 - Ex: ./container.sh mysql up
 
 ```bash
+# search container
+$ ./helper.sh container search  sql
+
 # lists container
 $ ./helper.sh container list
 
